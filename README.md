@@ -70,7 +70,6 @@ export SENDER_EMAIL="example_newsletter@newsletter.com"
 
 One thing to note, you should be aware of approximately what time the newsletter sends their daily emails. For example, the one I use gets the email roughly around 2:30 pm every weekday. So in my yml file, I set the job to run automatically everday at 3:00 pm wver weekday, slightly after the expected time of arriveal from the newsletter.
 
-
 I promise this is the last environment variable. I know, its a lot. But this is the one that is the most important. This is the API key for the OpenAI API. You can get this by going to the OpenAI website and signing up for an account. Then, you can go to the API keys section and create a new key. Copy that key and paste it into the environment variable. VERY IMPORTANT, YOU MUST PAY FOR TOKEN CREDITS TO USE THE API. THEY ARE NOT FREE. BUT THEY ARE CHEAP. I think I paid like $10 for an entire semester and I doubt I will use all the tokens. I reccomend getting it reimburse by your school or company if you are using it for a project.
 
 1. Go to ```https://platform.openai.com/api-keys```
@@ -93,6 +92,7 @@ EMAIL_ADDRESS
 EMAIL_PASSWORD
 OPENAI_API_KEY
 SLACK_BOT_TOKEN
+SENDER_EMAIL
 
 Just click ```New repository secret``` and add the secrets one by one. The name of the secret should be the same as the name of the environment variable that we set up in the previous section. The value of the secret should be the value of the environment variable that we set up in the previous section. Do not include the "".
 
@@ -101,4 +101,3 @@ Just click ```New repository secret``` and add the secrets one by one. The name 
  Name: EMAIL_ADDRESS
  Value: your email address without ""
 
- 

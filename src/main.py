@@ -5,7 +5,7 @@ from slack_sender import send_slack_message, SLACK_BOT_TOKEN, CHANNEL, TESTING_C
 import logging
 import os
 
-SENDER_EMAIL = os.getenv('SENDER_EMAIL')
+
 
 def main():
     """
@@ -22,7 +22,7 @@ def main():
         logging.info("Successfully connected to the email server.")
 
         # sender_email = input("Enter the sender's email address to retrieve unread emails: ")
-        sender_email = SENDER_EMAIL
+        sender_email = os.getenv('SENDER_EMAIL')
         logging.info(f"Step 2: Retrieving unread emails from {sender_email}...")
         unread_email_ids = get_unread_emails_from_sender(mail, sender_email)
 
