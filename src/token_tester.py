@@ -8,14 +8,11 @@ def count_tokens(text, model_name="gpt-4o"):
     :param model_name: The name of the OpenAI model (e.g., "gpt-4", "gpt-3.5-turbo").
     :return: The number of tokens in the string.
     """
-    # Get the encoding for the specified model
     encoding = tiktoken.encoding_for_model(model_name)
     
-    # Tokenize the text and count the tokens
     tokens = encoding.encode(text)
     return len(tokens)
 
-# Example usage
 input_string = input("Enter a string to count tokens: ")
 token_count = count_tokens(input_string)
 print(f"The string contains {token_count} tokens.")

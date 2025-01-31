@@ -54,6 +54,7 @@ def main():
                 """
                 logging.info("Sending the summary to slack...")
                 send_slack_message(formatted_message, SLACK_BOT_TOKEN, TESTING_CHANNEL)
+                # TODO: Add a check to see if the message was sent successfully
                 logging.info("Successfully sent the summary to slack.")
             else:
                 logging.error("Failed to summarize the email text.")

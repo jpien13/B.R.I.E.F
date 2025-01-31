@@ -25,7 +25,7 @@ jobs:
 
       - name: Run the script
         env:
-          SLACK_BOT_OAUTH: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD}}
           OPENAI_API_KEY:  ${{secrets.OPENAI_API_KEY}}
