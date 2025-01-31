@@ -2,7 +2,7 @@ name: Run B.R.I.E.F
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # Runs every day at 3 PM EST (20:00 UTC)
+    - cron: '0 20 * * 2,4'  # Runs at 3 PM EST (20:00 UTC) on Tuesday and Thursday
   workflow_dispatch:  
 
 jobs:
