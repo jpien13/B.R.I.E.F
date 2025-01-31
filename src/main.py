@@ -5,7 +5,7 @@ from slack_sender import send_slack_message, SLACK_BOT_TOKEN, CHANNEL, TESTING_C
 import logging
 import os
 
-
+# TODO: Add a toggle between testing and production channels
 
 def main():
     """
@@ -53,7 +53,7 @@ def main():
                 * This bot will post on Tuesdays & Thurdays around 3 PM EST.
                 """
                 logging.info("Sending the summary to slack...")
-                send_slack_message(formatted_message, SLACK_BOT_TOKEN, TESTING_CHANNEL)
+                send_slack_message(formatted_message, SLACK_BOT_TOKEN, CHANNEL)
                 # TODO: Add a check to see if the message was sent successfully
                 logging.info("Successfully sent the summary to slack.")
             else:
