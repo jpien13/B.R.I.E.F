@@ -46,3 +46,26 @@ export EMAIL_PASSWORD="your_16_character_password"
 ```
 If you wanted permanent environment variables, you would need to add them to your .bash_profile or .zshrc file. This is not recommended for security reasons. If you are on Windows, you would need to set these as environment variables in the System Properties.
 
+Next, you need to set up the slack bot OAUTH as an environment variable. If the bot is not already created, then to get this OAUTH key, you first need to actually create the bot in slack's app. 
+
+1. Go to this website and click 'create new app' : ```https://api.slack.com/apps```
+2. Click create from scrath
+3. Give your bot/app a name and select the desire workspace and click create
+4. After creating the app, navigate to the "OAuth & Permissions" section. Scroll down to the "Scopes" section and add the following scope under Bot Token Scopes: ```chat:write``` – This allows the app to post messages to Slack channels.
+5. Once you've added the necessary permissions, install the app to your workspace by clicking the Install to Workspace button. After installation, you’ll get a Bot User OAuth Token. This token will be used in your Python script to authenticate API requests. Write this token down somewhere safe. After you have written it down, you can set it as an environment variable in your terminal by typing:
+
+```
+export SLACK_BOT_TOKEN="your slack token"
+```
+
+6. Next, go to the channel you want to post to and invite the bot to the channel. You can do this by typing /invite @your_bot_name in the channel and selecting the bot from the list.
+7. Lastly, in ```slack_sender.py``` set the global variable ```CHANNEL``` to the channel you want to post to; its just the channel name. For example #fintech-general-body-slack. Additionally, if you want to test the bot without posting to a public channel, you can set the ```TESTING_CHANNEL``` to another channel and run slack_sender.py directly. This will post to the testing channel instead of the public channel assuming you made another private channel on slack to test on.
+
+Ok last step. The general way this bot works, is that it expects a email newsletter and parses that into a slack message. The email newsletter is expected to be in the form of a html file. Essentailly, it summarizes a newsletter sent to the EMAIL_ADDRESS you entered as an environment variable and summarizes it and sends to slack. If you are looking for a webscraping bot, check out T.I.D.A.L on my git jpien13. Although, I believe this approach is better given the difficulties of webscraping and 403 Forbidden errors. Back to my point. Since this bot uses a newsletter, you need to be subscribed to a daily newsletter you want the bot's content to pull from. Once you have done so, add that sender gmail addresss as an enivronment variable called ```SENDER```.
+
+
+```
+export SENDER_EMAIL="example_newsletter@newsletter.com"
+```
+
+One thing to note, you should be aware of approximately what time the newsletter sends their daily emails. For example, the one I use gets the email roughly around 2:30 pm every weekday. So in my yml file, I set the job to run automatically everday at 3:00 pm wver weekday, slightly after the expected time of arriveal from the newsletter.

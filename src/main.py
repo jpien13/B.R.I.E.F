@@ -1,7 +1,11 @@
 from connect_email import connect_to_email_server, get_unread_emails_from_sender, mark_emails_as_read
 from email_scrape import fetch_and_extract_email_text
 from summarizer import summarize_text
+from slack_sender import send_slack_message, SLACK_BOT_TOKEN, CHANNEL, TESTING_CHANNEL
 import logging
+import os
+
+SENDER_EMAIL = os.getenv('SENDER_EMAIL')
 
 def main():
     """
@@ -17,7 +21,8 @@ def main():
         mail = connect_to_email_server()
         logging.info("Successfully connected to the email server.")
 
-        sender_email = input("Enter the sender's email address to retrieve unread emails: ")
+        # sender_email = input("Enter the sender's email address to retrieve unread emails: ")
+        sender_email = SENDER_EMAIL
         logging.info(f"Step 2: Retrieving unread emails from {sender_email}...")
         unread_email_ids = get_unread_emails_from_sender(mail, sender_email)
 
@@ -35,8 +40,25 @@ def main():
             logging.info("Making API call to summarize the email text...")
             summary = summarize_text(email_text, max_tokens=16384)
             print(summary)
-            logging.info("Successfully summarized the email text.")
+            if summary:
+                logging.info("Successfully summarized the email text.")
+                clean_summary = '\n'.join(line.strip() for line in summary.split('\n'))
+                formatted_message = f"""
+                
+                Hello everyone! Here's what's going on in finance/tech today…
 
+                {clean_summary}
+
+                * Note from Head of Tech: Like all LLMs, this bot can make mistakes.
+                * This bot will post on Tuesdays & Thurdays around 3 PM EST.
+                """
+                logging.info("Sending the summary to slack...")
+                send_slack_message(formatted_message, SLACK_BOT_TOKEN, TESTING_CHANNEL)
+                logging.info("Successfully sent the summary to slack.")
+            else:
+                logging.error("Failed to summarize the email text.")
+                return
+            
     except Exception as e:
         logging.error(f"An error occurred during testing: {e}")
     finally:
@@ -44,6 +66,7 @@ def main():
             logging.info("Step 5: Logging out from the email server...")
             mail.logout()
             logging.info("Successfully logged out.")
+    
 
 
 if __name__ == "__main__":

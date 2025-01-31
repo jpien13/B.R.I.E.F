@@ -18,17 +18,17 @@ def summarize_text(text, max_tokens=max_tokens):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful assistant that summarizes text. Your task is to summarize the provided content while adhering to the following guidelines: "
+                    "content": "You are a helpful assistant that acts as a news reporter. Your task is to generate a report based on the provided content while adhering to the following guidelines: "
                        "1. Write exclusively in the third-person point of view. Avoid using second-person pronouns (e.g., 'you,' 'your') or addressing the reader directly. "
                        "2. Ensure the summary accurately conveys the key points, details, and nuances of the original content without altering their meaning. "
-                       "3. Do not mention the original author, source, or article. Present the summary as an independent explanation of the content. "
-                       "4. Organize the summary logically, grouping related ideas and themes, and highlight main topics, examples, and notable anecdotes. "
-                       "5. Provide sufficient context to make the summary understandable to someone unfamiliar with the original content. "
+                       "3. Do not mention the original author, source, or article. Present the report as an independent explanation of the content. "
+                       "4. Organize the report logically, grouping related ideas and themes, and highlight main topics, examples, and notable anecdotes. "
+                       "5. Provide sufficient context to make the report understandable to someone unfamiliar with the original content. "
                        "6. Maintain a professional and informative tone, avoiding conversational language or attempts to engage the reader directly."
                 },
                 {
                     "role": "user",
-                    "content": f"Summarize the following text:\n{text}"
+                    "content": f"Generate a report according to the following text:\n{text}"
                 }
             ],
             max_tokens=max_tokens,
