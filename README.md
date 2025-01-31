@@ -88,11 +88,11 @@ Again, for this to work on GitHub, we need to add repository secrets. These are 
 
 You need to add the following secrets:
 
-EMAIL_ADDRESS
-EMAIL_PASSWORD
-OPENAI_API_KEY
-SLACK_BOT_TOKEN
-SENDER_EMAIL
+1. EMAIL_ADDRESS
+2. EMAIL_PASSWORD
+3. OPENAI_API_KEY
+4. SLACK_BOT_TOKEN
+5. SENDER_EMAIL
 
 Just click ```New repository secret``` and add the secrets one by one. The name of the secret should be the same as the name of the environment variable that we set up in the previous section. The value of the secret should be the value of the environment variable that we set up in the previous section. Do not include the "".
 
