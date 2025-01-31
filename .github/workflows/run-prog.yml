@@ -29,5 +29,6 @@ jobs:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD}}
           OPENAI_API_KEY:  ${{secrets.OPENAI_API_KEY}}
+          SENDER_EMAIL:  ${{secrets.SENDER_EMAIL}}
         run: |
           python src/main.py
