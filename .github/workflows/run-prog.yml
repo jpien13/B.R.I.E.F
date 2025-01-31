@@ -30,4 +30,4 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD}}
           OPENAI_API_KEY:  ${{secrets.OPENAI_API_KEY}}
         run: |
-          python main.py
+          python src/main.py
